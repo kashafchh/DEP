@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clothing Store</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body and font settings */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #bea6c4;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background: #3c2743;
+            color: #ffffff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: center;
+            background: #622b65;
+        }
+
+        nav a {
+            color: #fff;
+            padding: 15px 20px;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        nav a:hover {
+            background: #a386a9;
+        }
+
+        /* Main content */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .slider-container {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            max-width: 1000px;
+            margin: 20px 0;
+        }
+
+        .slider {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .slider-buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .button {
+            background-color: #622b65;
+            border: none;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        /* Product section */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .product {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .product img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 15px;
+        }
+
+        .product-info h2 {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .product-info p {
+            margin-bottom: 15px;
+            color: #622b65;
+        }
+
+        .product-info button {
+            background: #622b65;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .product-info button:hover {
+            background: #555;
+        }
+       
+        footer {
+            background: #3c2743;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+            }
+
+            nav a {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Clothes for Life</h1>
+            <nav>
+                <a href="#">Home</a>
+                <a href="#">Products</a>
+                <a href="#">About Us</a>
+                <a href="#">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="main-content container">
+        <!-- Slider Section -->
+        <div class="slider-container">
+            <img id="sliderImage" class="slider" src="https://via.placeholder.com/1200x300" alt="Clothing Sale">
+            <div class="slider-buttons">
+                <button class="button" id="prev">Prev</button>
+                <button class="button" id="next">Next</button>
+            </div>
+        </div>
+
+        <!-- Product Section -->
+        <section class="products">
+            <div class="product">
+                <img src="https://via.placeholder.com/300x200" alt="Product 1">
+                <div class="product-info">
+                    <h2>Product 1</h2>
+                    <p>Rs 2500</p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+            <div class="product">
+                <img src="https://via.placeholder.com/300x200" alt="Product 2">
+                <div class="product-info">
+                    <h2>Product 2</h2>
+                    <p>Rs 3500</p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+            <div class="product">
+                <img src="https://via.placeholder.com/300x200" alt="Product 3">
+                <div class="product-info">
+                    <h2>Product 3</h2>
+                    <p>Rs 3100</p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+            
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 My Clothing Store. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const images = [
+                'https://via.placeholder.com/1200x300?text=Sale+1',
+                'https://via.placeholder.com/1200x300?text=Sale+2',
+                'https://via.placeholder.com/1200x300?text=Sale+3'
+            ];
+            let currentIndex = 0;
+
+            const sliderImage = document.getElementById('sliderImage');
+            const prevButton = document.getElementById('prev');
+            const nextButton = document.getElementById('next');
+
+            const updateSlider = () => {
+                sliderImage.src = images[currentIndex];
+            };
+
+            prevButton.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                updateSlider();
+            });
+
+            nextButton.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % images.length;
+                updateSlider();
+            });
+        });
+    </script>
+</body>
+</html>
