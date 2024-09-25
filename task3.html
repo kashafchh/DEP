@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Arts and Crafts Shop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0; /* Light grey background */
+        }
+
+        header, footer {
+            background-color: #008080; /* Teal */
+            color: white;
+            padding: 20px;
+        }
+
+        .card {
+            text-align: center;
+            border: none;
+        }
+
+        .card img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .cart {
+            margin-top: 20px;
+        }
+
+        .contact {
+            margin-top: 20px;
+        }
+
+        .btn-teal {
+            background-color: #008080; /* Teal */
+            color: white;
+        }
+
+        .btn-teal:hover {
+            background-color: #006666; /* Darker teal on hover */
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header class="text-center">
+        <h1>Arts and Crafts Shop</h1>
+        <nav>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#products" class="text-white">Products</a></li>
+                <li class="list-inline-item"><a href="#cart" class="text-white">Cart</a></li>
+                <li class="list-inline-item"><a href="#contact" class="text-white">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- Products Section -->
+        <section id="products" class="text-center">
+            <h2>Our Products</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="https://via.placeholder.com/300" loading="lazy" class="card-img-top" alt="Craft Item 1">
+                        <div class="card-body">
+                            <h5 class="card-title">Handmade Vase</h5>
+                            <p class="card-text">$25</p>
+                            <button class="btn btn-teal" onclick="addToCart('Handmade Vase', 25)">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="https://via.placeholder.com/300" loading="lazy" class="card-img-top" alt="Craft Item 2">
+                        <div class="card-body">
+                            <h5 class="card-title">Painted Canvas</h5>
+                            <p class="card-text">$30</p>
+                            <button class="btn btn-teal" onclick="addToCart('Painted Canvas', 30)">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="https://via.placeholder.com/300" loading="lazy" class="card-img-top" alt="Craft Item 3">
+                        <div class="card-body">
+                            <h5 class="card-title">Wood Carving</h5>
+                            <p class="card-text">$50</p>
+                            <button class="btn btn-teal" onclick="addToCart('Wood Carving', 50)">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cart Section -->
+        <section id="cart" class="cart">
+            <h2>Your Cart</h2>
+            <ul id="cart-items" class="list-unstyled">
+                <li>Your cart is empty</li>
+            </ul>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <h2>Contact Us</h2>
+            <form onsubmit="sendMessage(event)">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea class="form-control" id="message" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-teal">Send Message</button>
+            </form>
+        </section>
+    </div>
+
+    <footer class="text-center">
+        <p>Contact Us: info@artsandcrafts.com</p>
+    </footer>
+
+    <script>
+        let cartItems = [];
+
+        function addToCart(itemName, itemPrice) {
+            cartItems.push({ name: itemName, price: itemPrice });
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItemsList = document.getElementById('cart-items');
+            cartItemsList.innerHTML = ''; // Clear previous items
+
+            if (cartItems.length === 0) {
+                cartItemsList.innerHTML = '<li>Your cart is empty</li>';
+            } else {
+                cartItems.forEach(item => {
+                    const li = document.createElement('li');
+                    li.textContent = `${item.name} - $${item.price}`;
+                    cartItemsList.appendChild(li);
+                });
+            }
+        }
+
+        function sendMessage(event) {
+            event.preventDefault(); // Prevent page reload
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            console.log(`Message from ${name} (${email}): ${message}`);
+            alert('Message sent! Thank you for contacting us.');
+            document.querySelector('form').reset(); // Reset the form
+        }
+    </script>
+</body>
+</html>
