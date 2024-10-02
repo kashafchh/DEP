@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Cross-Browser Compatible Website</title>
+    
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header, footer {
+            background-color: #0056b3;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap; 
+            gap: 20px;
+        }
+
+        .main-content, .sidebar {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            flex: 1;
+        }
+
+        .main-content {
+            flex-basis: 65%; 
+        }
+
+        .sidebar {
+            flex-basis: 30%; 
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .row {
+                flex-direction: column; 
+            }
+
+            header, footer {
+                padding: 10px;
+                background-color: #003d80;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Website</h1>
+        <p>This is a simple website for testing browser compatibility.</p>
+    </header>
+
+    <div class="container">
+        <div class="row">
+            <div class="main-content">
+                <h2>Main Content Area</h2>
+                <p>This is the main content area. It should look the same across different browsers.</p>
+            </div>
+            <div class="sidebar">
+                <h2>Sidebar</h2>
+                <p>This is a sidebar area for additional information or links.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 My Website. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("Page Loaded - Testing Browser Compatibility");
+        });
+    </script>
+</body>
+</html>
