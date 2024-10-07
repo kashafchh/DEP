@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Reservation Form</title>
+  <style>
+    /* General Styles for Form */
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #dcccde;
+      border: 1px solid #7a5073;
+      border-radius: 8px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #110f0f;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    /* Button Styles */
+    button {
+      background-color: #a1e2fa;
+      color: rgb(72, 72, 72);
+      padding: 10px 15px;
+      border: 1px solid #110f0f;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #3793a3;
+    }
+
+    /* Error Message Styling */
+    .error-message {
+      font-size: 14px;
+      color: rgb(192, 107, 175);
+      margin-bottom: 10px;
+    }
+
+    /* Input Error Highlighting */
+    input:invalid {
+      border-color: rgb(192, 107, 175);
+    }
+
+    input:valid {
+      border-color: rgb(107, 147, 194);
+    }
+  </style>
+</head>
+<body>
+
+  <h2 style="text-align: center;">Reservation Form</h2>
+  <form id="reservationForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required />
+    <span class="error-message" id="nameError"></span>
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required />
+    <span class="error-message" id="emailError"></span>
+    
+    <label for="phone">Phone Number:</label>
+    <!-- Updated pattern for 11 digits -->
+    <input type="tel" id="phone" name="phone" pattern="[0-9]{11}" required />
+    <span class="error-message" id="phoneError"></span>
+    
+    <label for="date">Reservation Date:</label>
+    <input type="date" id="date" name="date" required />
+    <span class="error-message" id="dateError"></span>
+    
+    <label for="time">Reservation Time:</label>
+    <input type="time" id="time" name="time" required />
+    <span class="error-message" id="timeError"></span>
+    
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    document.getElementById('reservationForm').addEventListener('input', function (e) {
+      const name = document.getElementById('name');
+      const email = document.getElementById('email');
+      const phone = document.getElementById('phone');
+      const date = document.getElementById('date');
+      const time = document.getElementById('time');
+
+      // Validate Name
+      if (name.value.trim() === "") {
+        showError('nameError', "Name is required.");
+      } else {
+        clearError('nameError');
+      }
+
+      // Validate Email
+      if (email.validity.typeMismatch || email.value.trim() === "") {
+        showError('emailError', "Please enter a valid email address.");
+      } else {
+        clearError('emailError');
+      }
+
+      // Validate Phone (Updated for 11 digits)
+      if (phone.validity.patternMismatch || phone.value.trim() === "") {
+        showError('phoneError', "Please enter a valid 11-digit phone number.");
+      } else {
+        clearError('phoneError');
+      }
+
+      // Validate Date
+      if (date.value.trim() === "") {
+        showError('dateError', "Please select a reservation date.");
+      } else {
+        clearError('dateError');
+      }
+
+      // Validate Time
+      if (time.value.trim() === "") {
+        showError('timeError', "Please select a reservation time.");
+      } else {
+        clearError('timeError');
+      }
+    });
+
+    // Function to show error message
+    function showError(elementId, message) {
+      const errorElement = document.getElementById(elementId);
+      errorElement.textContent = message;
+      errorElement.style.color = "red";
+    }
+
+    // Function to clear error message
+    function clearError(elementId) {
+      const errorElement = document.getElementById(elementId);
+      errorElement.textContent = "";
+    }
+  </script>
+
+</body>
+</html>
